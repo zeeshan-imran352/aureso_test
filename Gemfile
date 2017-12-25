@@ -28,6 +28,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rspec_api_documentation'
 gem 'factory_bot'
+gem 'active_model_serializers'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

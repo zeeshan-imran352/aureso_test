@@ -4,7 +4,7 @@ require 'rspec_api_documentation/dsl'
 resource "Cars" do
   let(:car) { FactoryBot.create(:car) }
   
-  get "/api/cars/:id" do
+  get "/api/v1/cars/:id" do
     parameter :id, "Car Slug", required: true
     let(:id) { car.slug }
 
@@ -14,9 +14,8 @@ resource "Cars" do
       expect(status).to eq(200)
       json = JSON.parse(response_body)
       car_json = json['data']['car']
-
-      expect(car_json["id"]).to eq(car.id)
-      expect(car_json["name"]).to eq(car.name)
+      expect(car_json["car_slug"]).to eq(car.slug)
+      expect(car_json["max_speed"]).to eq("#{car.max_speed} km/h")
     end
 
     example "Car Not Found" do

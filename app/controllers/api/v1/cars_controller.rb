@@ -2,11 +2,8 @@ class Api::V1::CarsController < Api::V1::BaseController
   before_filter :get_car
 
   def show
-    render :json => {
-      data: {
-        car: @car
-      }
-    }
+    @car.max_speed_on_track = CalculationService.calculate_max_speed(@car, params)
+    render json: @car
   end
 
   private
